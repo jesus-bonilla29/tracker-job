@@ -5,7 +5,7 @@ que piden y las guarda en PostgreSQL para analizar qué se demanda más y cómo 
 
 > **Estado:** semana 5. Tres fuentes (**Remotive**, **Arbeitnow** y **Hacker News "Who is hiring?"**),
 > extractor de skills (111 tecnologías), marca `is_tech`, **API REST documentada con Swagger** y **dashboard en React**, **"Mi match"** (qué ofertas encajan con tu perfil).
-> Próximo paso: despliegue online y, más adelante, Redis.
+> Próximo paso: desplegarlo y, más adelante, Redis.
 
 ## Stack
 
@@ -148,6 +148,11 @@ Decisiones y cautelas:
 - Los datos se piden con TanStack Query (caché de 60 s, igual que la API) y todas las vistas tienen estado de carga, error con
   botón de reintento y estado vacío con instrucciones.
 
+## Despliegue
+
+`docker-compose.prod.yml` añade Caddy (HTTPS automático, reparte `/api/*` y el dashboard) y es el único servicio que
+escucha en internet. Guía completa con servidor, dominio gratis, copias de seguridad y problemas frecuentes: [DEPLOY.md](DEPLOY.md).
+
 ## Pruebas
 
 ```bash
@@ -224,5 +229,5 @@ Cualquier vista pública que muestre ofertas debe incluir ese enlace y la atribu
 - [x] Semana 3: API REST (skills, tendencias, ofertas) con Zod y Swagger
 - [x] Semana 4: dashboard React + TypeScript con gráficos
 - [x] Semana 5: "Mi match" (`/api/match` + vista)
-- [ ] Despliegue online (HTTPS)
+- [x] Despliegue online (HTTPS): guía paso a paso en [DEPLOY.md](DEPLOY.md) (VPS + Docker + Caddy)
 - [ ] Redis (caché; poco valor mientras la API ya cachea 60 s)

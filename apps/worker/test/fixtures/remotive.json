@@ -1,0 +1,66 @@
+{
+  "0-legal-notice": "Remotive API Legal Notice",
+  "job-count": 5,
+  "jobs": [
+    {
+      "id": 1001,
+      "url": "https://remotive.com/remote-jobs/software-dev/senior-typescript-engineer-1001",
+      "title": "Senior TypeScript Engineer",
+      "company_name": "Acme Cloud",
+      "company_logo": "https://remotive.com/job/1001/logo",
+      "category": "Software Development",
+      "job_type": "full_time",
+      "publication_date": "2026-11-05T10:23:26",
+      "candidate_required_location": "Worldwide",
+      "salary": "$90,000 - $120,000",
+      "description": "<p>We build APIs with <strong>Node.js</strong> &amp; <em>TypeScript</em>.</p><ul><li>React on the frontend</li><li>PostgreSQL &amp; Redis</li></ul>"
+    },
+    {
+      "id": 1002,
+      "url": "https://remotive.com/remote-jobs/software-dev/frontend-developer-1002",
+      "title": "Frontend Developer",
+      "company_name": "Pixel Labs",
+      "company_logo": "",
+      "category": "Software Development",
+      "job_type": "",
+      "publication_date": "2026-11-06T08:00:00",
+      "candidate_required_location": "Europe",
+      "salary": "",
+      "description": "<p>React, Next.js and CSS.<br>Remote-first team.</p>"
+    },
+    {
+      "id": 1003,
+      "url": "https://remotive.com/remote-jobs/software-dev/contract-backend-1003",
+      "title": "Contract Backend Developer",
+      "company_name": "Freelance Co",
+      "company_logo": "https://remotive.com/job/1003/logo",
+      "category": "Software Development",
+      "job_type": "contract",
+      "publication_date": "2026-11-07T15:45:10",
+      "candidate_required_location": "USA Only",
+      "salary": "$45/hour",
+      "description": "<p>Python and Django.</p>"
+    },
+    {
+      "id": 1004,
+      "title": "Oferta sin URL (debe descartarse)",
+      "company_name": "Broken Inc",
+      "category": "Software Development",
+      "publication_date": "2026-11-07T15:45:10",
+      "description": "<p>Esta oferta no trae enlace.</p>"
+    },
+    {
+      "id": 1005,
+      "url": "https://remotive.com/remote-jobs/software-dev/platform-engineer-1005",
+      "title": "Platform Engineer",
+      "company_name": "Infra Works",
+      "company_logo": "https://remotive.com/job/1005/logo",
+      "category": "Software Development",
+      "job_type": "full_time",
+      "publication_date": "2026-11-08T12:00:00",
+      "candidate_required_location": "Worldwide",
+      "salary": "€60k - €80k",
+      "description": "<p>Docker, Kubernetes, Terraform &amp; AWS.</p>"
+    }
+  ]
+}

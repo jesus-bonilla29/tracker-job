@@ -1,0 +1,84 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-tjt}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en tu archivo .env}
+      POSTGRES_DB: ${POSTGRES_DB:-tjt}
+    ports:
+      # Solo desde tu propio equipo: en un servidor, Docker publicaría 5432 a todo internet (saltándose ufw).
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-tjt} -d ${POSTGRES_DB:-tjt}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  worker:
+    build:
+      context: .
+      dockerfile: apps/worker/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-tjt}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-tjt}
+      SOURCES: ${SOURCES:-remotive,arbeitnow,hn}
+      REMOTIVE_CATEGORY: ${REMOTIVE_CATEGORY:-software-dev}
+      ARBEITNOW_MAX_PAGES: ${ARBEITNOW_MAX_PAGES:-5}
+      HN_THREADS: ${HN_THREADS:-1}
+      ETL_INTERVAL_HOURS: ${ETL_INTERVAL_HOURS:-6}
+      RUN_ONCE: ${RUN_ONCE:-false}
+      FORCE_RUN: ${FORCE_RUN:-false}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-tjt}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-tjt}
+      PORT: 3000
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:5173}
+      RATE_LIMIT_PER_MIN: ${RATE_LIMIT_PER_MIN:-120}
+      CACHE_SECONDS: ${CACHE_SECONDS:-60}
+      # Hay un proxy (nginx, servicio `web`) delante: el límite de peticiones debe contar la IP real del visitante.
+      TRUST_PROXY: 1
+    ports:
+      # Solo accesible desde tu propio equipo. Para exponerla, cambia 127.0.0.1 y ponle un proxy con HTTPS delante.
+      - "127.0.0.1:${API_PORT:-3000}:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      # Solo accesible desde tu propio equipo. Para publicarlo, ponle delante un proxy con HTTPS.
+      - "127.0.0.1:${WEB_PORT:-8080}:8080"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+volumes:
+  pgdata:

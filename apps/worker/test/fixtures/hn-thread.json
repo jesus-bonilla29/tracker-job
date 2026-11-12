@@ -1,0 +1,105 @@
+{
+  "id": 9000003,
+  "type": "story",
+  "title": "Ask HN: Who is hiring? (November 2026)",
+  "created_at_i": 1793631660,
+  "children": [
+    {
+      "id": 9100001,
+      "type": "comment",
+      "author": "acme_hr",
+      "created_at_i": 1793635800,
+      "text": "Acme Cloud | Senior TypeScript Engineer | Berlin, Germany | Hybrid | Full-time | €70k-€90k<p>We build APIs with Node.js &amp; TypeScript, a React frontend and PostgreSQL on AWS.<p>Apply at <a href=\"https:&#x2F;&#x2F;acme.example&#x2F;jobs\" rel=\"nofollow\">https:&#x2F;&#x2F;acme.example&#x2F;jobs</a>",
+      "children": [
+        {
+          "id": 9100099,
+          "type": "comment",
+          "author": "curious_dev",
+          "created_at_i": 1793636000,
+          "text": "Is this role open to juniors? | I know Python | and Go",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 9100002,
+      "type": "comment",
+      "author": "pixel_labs",
+      "created_at_i": 1793698200,
+      "text": "Pixel Labs | Frontend Developer | REMOTE (EU time zones) | Contract | $120k-150k<p>React, Next.js and CSS. Small remote-first team.",
+      "children": []
+    },
+    {
+      "id": 9100003,
+      "type": "comment",
+      "author": "roofco",
+      "created_at_i": 1793698300,
+      "text": "Roof Insurance | ONSITE | San Francisco, CA<p>All-in-one commercial insurance platform.<p>Senior Backend Engineer (Go, PostgreSQL, Kubernetes)",
+      "children": []
+    },
+    {
+      "id": 9100004,
+      "type": "comment",
+      "author": "grumpy_user",
+      "created_at_i": 1793698400,
+      "text": "I'm not sure this is the right place, but please send an acknowledgement when people apply to your posts.",
+      "children": []
+    },
+    {
+      "id": 9100005,
+      "type": "comment",
+      "author": null,
+      "created_at_i": 1793698500,
+      "text": null,
+      "children": []
+    },
+    {
+      "id": 9100006,
+      "type": "comment",
+      "author": "quantum_labs",
+      "created_at_i": 1793698600,
+      "text": "Quantum Labs | Quantum Software Engineer | Full-time | Paris (HQ) or Remote (Europe) We are building a hub for quantum hackathons<p>Python, Rust and Docker.",
+      "children": []
+    },
+    {
+      "id": 9100007,
+      "type": "comment",
+      "author": "slidely",
+      "created_at_i": 1793698700,
+      "text": "Slidely | Full-Time | Remote in US &amp; CAN | SaaS B2B Software | Series B | 16M Funding<p>1. Senior Platform Engineer | 160k - 200k Base + Equity<p>Docker, Kubernetes, Terraform and AWS.",
+      "children": []
+    },
+    {
+      "id": 9100008,
+      "type": "comment",
+      "author": "electro",
+      "created_at_i": 1793698800,
+      "text": "Electro | <a href=\"https:&#x2F;&#x2F;electro.example\" rel=\"nofollow\">https:&#x2F;&#x2F;electro.example</a> | Founders Associate | FT | US based, SF Bay Area preferred<p>Devtools startup working on real-time sync.",
+      "children": []
+    },
+    {
+      "id": 9100009,
+      "type": "comment",
+      "author": "wireco",
+      "created_at_i": 1793698900,
+      "text": "WireCo (Series A) | Senior Software Engineer | NYC - hybrid | Full-time | $165k-$210k base + equity |<p>Python and Django, with a bit of Java.",
+      "children": []
+    },
+    {
+      "id": 9100010,
+      "type": "comment",
+      "author": "salesco",
+      "created_at_i": 1793699000,
+      "text": "GoToMarket Partners | Account Executive | Madrid | Onsite | Full-time<p>Own our go-to-market motion. Excel and SQL are helpful.",
+      "children": []
+    },
+    {
+      "id": 9100011,
+      "type": "comment",
+      "author": "smarterco",
+      "created_at_i": 1793817900,
+      "text": "SmarterCo | 150-250k + equity + benefits | Remote (US only) | Multiple roles | ...<p>We build clinical software with Python and PostgreSQL.",
+      "children": []
+    }
+  ]
+}

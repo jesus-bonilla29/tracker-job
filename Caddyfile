@@ -1,0 +1,22 @@
+# Proxy de producción: HTTPS automático (Let's Encrypt) y reparto entre la API y el dashboard.
+# Caddy sustituye X-Forwarded-For por la IP real del visitante; la API (TRUST_PROXY=1) la usa para el límite de peticiones.
+{
+	email {$ACME_EMAIL}
+}
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+
+	handle /api/* {
+		reverse_proxy api:3000
+	}
+
+	handle {
+		reverse_proxy web:8080
+	}
+}

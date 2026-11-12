@@ -1,0 +1,28 @@
+# Capa de producción: se suma al docker-compose.yml.
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+# (o define COMPOSE_FILE=docker-compose.yml:docker-compose.prod.yml en el .env del servidor y usa solo `docker compose up -d --build`)
+#
+# Solo Caddy escucha en internet (80 y 443). db, api y web siguen ligados a 127.0.0.1.
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+      web:
+        condition: service_healthy
+    environment:
+      DOMAIN: ${DOMAIN:?Define DOMAIN en tu archivo .env (p. ej. mi-tracker.duckdns.org)}
+      ACME_EMAIL: ${ACME_EMAIL:?Define ACME_EMAIL en tu archivo .env}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,11 @@
+# Nada de esto debe entrar al contexto de build: node_modules del host (otra plataforma),
+# resultados de compilación, secretos y metadatos.
+**/node_modules
+**/dist
+.env
+.env.*
+!.env.example
+.git
+.github
+*.log
+backups/

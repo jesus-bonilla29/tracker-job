@@ -1,0 +1,27 @@
+{
+  "name": "@tjt/worker",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=../../.env --import tsx src/index.ts",
+    "migrate": "node --env-file-if-exists=../../.env --import tsx src/db/migrate-cli.ts",
+    "reprocess": "node --env-file-if-exists=../../.env --import tsx src/reprocess-cli.ts",
+    "report": "node --env-file-if-exists=../../.env --import tsx src/report-cli.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "pg": "^8.13.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/pg": "^8.11.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^5.1.0"
+  }
+}
