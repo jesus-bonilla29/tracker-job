@@ -1,0 +1,33 @@
+name: ETL (worker)
+
+# Sustituye al contenedor `worker` cuando el despliegue es Vercel + Neon.
+# Corre cada 3 h; el propio worker omite las fuentes consultadas hace menos de 6 h (límite de Remotive).
+# Se programa más seguido que 6 h a propósito: GitHub puede retrasar o adelantar un poco los cron.
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: etl
+  cancel-in-progress: false
+
+jobs:
+  etl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --workspace apps/worker
+      - run: npm run build --workspace apps/worker
+      - run: node apps/worker/dist/index.js
+        env:
+          # Secreto del repositorio: cadena de conexión DIRECTA (sin -pooler) de Neon.
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          RUN_ONCE: "true"
+          SOURCES: remotive,arbeitnow,hn
+          HN_THREADS: "6"
